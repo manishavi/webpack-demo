@@ -6,6 +6,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     app: './src/index.js',
+    print: './src/print.js'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -17,6 +18,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        name: 'your-project',
+        sideEffects: ['./src/some-side-effectful-file.js', '*.css']
       }
     ]
   },
@@ -31,5 +36,6 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
-  }
+  },
+  mode: 'development'
 };
